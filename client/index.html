@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book GraphQL Client</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://unpkg.com/graphql-request@5.0.0/dist/index.umd.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Book GraphQL Explorer</h1>
+            <p>Explore the world of books with GraphQL</p>
+        </header>
+
+        <nav>
+            <button id="tab-books" class="tab-button active">Books</button>
+            <button id="tab-authors" class="tab-button">Authors</button>
+            <button id="tab-genres" class="tab-button">Genres</button>
+        </nav>
+
+        <main>
+            <div id="books-panel" class="panel active">
+                <h2>Books</h2>
+                <div class="actions">
+                    <button id="load-books">Load All Books</button>
+                    <button id="add-book">Add New Book</button>
+                </div>
+                <div class="form-container" id="add-book-form" style="display: none;">
+                    <h3>Add New Book</h3>
+                    <form id="book-form">
+                        <div class="form-group">
+                            <label for="book-title">Title:</label>
+                            <input type="text" id="book-title" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="book-publication-year">Publication Year:</label>
+                            <input type="number" id="book-publication-year">
+                        </div>
+                        <div class="form-group">
+                            <label for="book-page-count">Page Count:</label>
+                            <input type="number" id="book-page-count">
+                        </div>
+                        <div class="form-group">
+                            <label for="book-author">Author:</label>
+                            <select id="book-author">
+                                <option value="">-- Select Author --</option>
+                            </select>
+                        </div>
+                        <button type="submit">Save Book</button>
+                        <button type="button" class="cancel">Cancel</button>
+                    </form>
+                </div>
+                <div id="books-list" class="items-list"></div>
+            </div>
+
+            <div id="authors-panel" class="panel">
+                <h2>Authors</h2>
+                <div class="actions">
+                    <button id="load-authors">Load All Authors</button>
+                    <button id="add-author">Add New Author</button>
+                </div>
+                <div class="form-container" id="add-author-form" style="display: none;">
+                    <h3>Add New Author</h3>
+                    <form id="author-form">
+                        <div class="form-group">
+                            <label for="author-name">Name:</label>
+                            <input type="text" id="author-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="author-birth-year">Birth Year:</label>
+                            <input type="number" id="author-birth-year">
+                        </div>
+                        <div class="form-group">
+                            <label for="author-nationality">Nationality:</label>
+                            <input type="text" id="author-nationality">
+                        </div>
+                        <button type="submit">Save Author</button>
+                        <button type="button" class="cancel">Cancel</button>
+                    </form>
+                </div>
+                <div id="authors-list" class="items-list"></div>
+            </div>
+
+            <div id="genres-panel" class="panel">
+                <h2>Genres</h2>
+                <div class="actions">
+                    <button id="load-genres">Load All Genres</button>
+                    <button id="add-genre">Add New Genre</button>
+                </div>
+                <div class="form-container" id="add-genre-form" style="display: none;">
+                    <h3>Add New Genre</h3>
+                    <form id="genre-form">
+                        <div class="form-group">
+                            <label for="genre-name">Name:</label>
+                            <input type="text" id="genre-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="genre-description">Description:</label>
+                            <textarea id="genre-description" rows="3"></textarea>
+                        </div>
+                        <button type="submit">Save Genre</button>
+                        <button type="button" class="cancel">Cancel</button>
+                    </form>
+                </div>
+                <div id="genres-list" class="items-list"></div>
+            </div>
+        </main>
+
+        <div id="details-modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h3 id="modal-title">Details</h3>
+                <div id="modal-content"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+type Query {
+  allBooks: [Book!]!
+  book(id: ID!): Book
+  allAuthors: [Author!]!
+  author(id: ID!): Author
+  allGenres: [Genre!]!
+  genre(id: ID!): Genre
+}
+
+type Mutation {
+  # Buku mutations
+  createBook(title: String!, publicationYear: Int, pageCount: Int, authorId: ID): Book
+  updateBook(id: ID!, title: String, publicationYear: Int, pageCount: Int, authorId: ID): Book
+  deleteBook(id: ID!): Boolean
+  
+  # Penulis mutations
+  createAuthor(name: String!, birthYear: Int, nationality: String): Author
+  updateAuthor(id: ID!, name: String, birthYear: Int, nationality: String): Author
+  deleteAuthor(id: ID!): Boolean
+  
+  # Genre mutations
+  createGenre(name: String!, description: String): Genre
+  updateGenre(id: ID!, name: String, description: String): Genre
+  deleteGenre(id: ID!): Boolean
+  
+  # Relationship mutation
+  addGenreToBook(bookId: ID!, genreId: ID!): Boolean
+  removeGenreFromBook(bookId: ID!, genreId: ID!): Boolean
+}
+
+input CreateBookInput {
+  title: String!
+  publicationYear: Int
+  pageCount: Int
+  authorId: ID
+}
+
+input UpdateBookInput {
+  id: ID!
+  title: String
+  publicationYear: Int
+  pageCount: Int
+  authorId: ID
+}
+
+input CreateAuthorInput {
+  name: String!
+  birthYear: Int
+  nationality: String
+}
+
+input UpdateAuthorInput {
+  id: ID!
+  name: String
+  birthYear: Int
+  nationality: String
+}
+
+input CreateGenreInput {
+  name: String!
+  description: String
+}
+
+input UpdateGenreInput {
+  id: ID!
+  name: String
+  description: String
+}
+
+input AddGenreInput {
+  bookId: ID!
+  genreId: ID!
+}
+
+type Book {
+  id: ID!
+  title: String!
+  publicationYear: Int
+  pageCount: Int
+  author: Author
+  genres: [Genre!]
+}
+
+type Author {
+  id: ID!
+  name: String!
+  birthYear: Int
+  nationality: String
+  books: [Book!]
+}
+
+type Genre {
+  id: ID!
+  name: String!
+  description: String
+  books: [Book!]
+}
