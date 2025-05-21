@@ -207,83 +207,42 @@ mutation {
   )
 }
 ```
-  }) {
+
+### 7. Menghapus penulis:
+```graphql
+mutation {
+  deleteAuthor(id: "1")
+}
+```
+
+### 8. Memperbarui penulis:
+```graphql
+mutation {
+  updateAuthor(
+    id: "2"
+    name: "Andrea Hirata Updated"
+    birthYear: 1967
+    nationality: "Indonesia"
+  ) {
     id
     name
-    species
+    birthYear
+    nationality
   }
 }
 ```
 
-### Menghapus karakter:
+### 9. Memperbarui genre:
 ```graphql
 mutation {
-  deleteCharacter(id: "11")
-}
-```
-
-### Menambahkan kapal baru:
-```graphql
-mutation {
-  createStarship(input: {
-    name: "Razor Crest",
-    model: "ST-70 class",
-    manufacturer: "Unknown"
-  }) {
+  updateGenre(
+    id: "1"
+    name: "Fiksi Modern"
+    description: "Karya sastra berbasis imajinasi dengan pendekatan kontemporer"
+  ) {
     id
     name
+    description
   }
 }
-```
 
-### Memperbarui kapal:
-```graphql
-mutation {
-  updateStarship(input: {
-    id: "1",
-    name: "Millennium Falcon",
-    model: "YT-1300 light freighter",
-    manufacturer: "Corellian Engineering Corporation"
-  }) {
-    id
-    name
-  }
-}
-```
-
-### Menghapus kapal:
-```graphql
-mutation {
-  deleteStarship(id: "11")
-}
-```
-
-### Menetapkan pilot ke kapal:
-```graphql
-mutation {
-  assignStarship(input: {
-    characterId: "1",
-    starshipId: "2"
-  }) {
-    name
-    pilotedStarships {
-      name
-    }
-  }
-}
-```
-
-### Menghapus pilot dari kapal:
-```graphql
-mutation {
-  unassignStarship(input: {
-    characterId: "1",
-    starshipId: "2"
-  }) {
-    name
-    pilotedStarships {
-      name
-    }
-  }
-}
-```
